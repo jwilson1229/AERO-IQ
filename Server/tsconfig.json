@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "target": "ES6",
+      "module": "commonjs",  // CommonJS modules for Node.js
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "types": ["node"],  // Node.js types for process and other globals
+      "typeRoots": ["./node_modules/@types"]
+    },
+    "include": [
+      "src/**/*"
+    ]
+  }
+  

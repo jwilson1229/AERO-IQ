@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",                     // Ensure you use a modern JavaScript version
+    "module": "ESNext",                     // Enable modern module syntax (import/export)
+    "moduleResolution": "node",             // Use Node module resolution
+    "strict": true,                         // Enable all strict type-checking options
+    "jsx": "react-jsx",                     // Use React JSX transform for React 17+ (if using React 17 or higher)
+    "esModuleInterop": true,                // Ensure compatibility with commonjs modules
+    "skipLibCheck": true,                   // Skip type checking for declaration files
+    "forceConsistentCasingInFileNames": true, // Enforce consistent file naming conventions
+    "noEmit": true                          // Prevent emitting output (when using only for type-checking)
+  },
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}

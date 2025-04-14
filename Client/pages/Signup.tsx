@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import {
-    Box, Button, Input, Heading,
+    Box, Button, Input, Heading, Text, Link
 } from '@chakra-ui/react';
 import { FormLabel, FormControl } from '@chakra-ui/form-control';
 import { gql, useMutation } from '@apollo/client';
@@ -40,6 +40,9 @@ export default function Signup() {
             alert('Signup Failed'); 
         }
     };
+    const handleSignInChange = () => {
+        navigate('/')
+    }
 
     return (
         <Box maxW="sm" mx="auto" mt="10">
@@ -58,6 +61,12 @@ export default function Signup() {
                     <Input type="password" name="password" onChange={handleChange} value={form.password} />
                 </FormControl>
                 <Button type="submit" colorScheme="blue" width="full">Sign Up</Button>
+                <Text textAlign="center" mt="4">
+                                Already have an account?{' '}
+                                <Link color="teal.500" onClick={handleSignInChange}>
+                                Login
+                                </Link>
+                            </Text>
             </form>
         </Box>
     );

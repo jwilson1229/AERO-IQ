@@ -1,22 +1,33 @@
-import { Schema, model, Document, Types } from 'mongoose';
+import { Schema, model, Document } from 'mongoose';
+
+const legSchema = new Schema ({
+  title: {
+    type: String,
+    required: true,
+  },
+  odds: {
+    type: Number,
+    required: true,
+  }
+});
 
 interface BetSlip extends Document {
   betType: string;
   stake: number;
   straightBetTitle: string;
   payout: number;
-  odds: number;
-  user: Types.ObjectId;      
+  odds: number;      
   createdAt: Date;
 }
 
 const betSlipSchema = new Schema({
-  betType: { type: String, required: true },
+  user: { type: Schema.Types.ObjectId, ref: 'User', required: true},
+  betType: { type: String, enum: ['Straightup', 'Parlay'], required: true },
   stake: { type: Number, required: true },
   straightBetTitle: { type: String, required: true },
   payout: { type: Number, required: true },
   odds: { type: Number, required: true },
-  user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  legs: [legSchema],
   createdAt: { type: Date, default: Date.now }
 });
 

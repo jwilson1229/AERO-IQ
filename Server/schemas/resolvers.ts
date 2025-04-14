@@ -28,16 +28,32 @@ export const resolvers = {
             return { token, user };
         },
         
-        createBetSlip: async (_, args, context) => {
-          if (!context.user) {
-            throw new Error('You must be logged in to create a bet slip');
+        createBetSlip: async (_, { input }: any, context:any) => {
+            if (!context.user) {
+           throw new Error('You must be logged in to create a bet slip');
           }
-    
-          const betSlip = await BetSlip.create({
-            ...args,
-            user: context.user._id
+          const { betType, stake, straightBetTitle, payout, odds, legs } = input;
+
+          const betSlipData: any = {
+            betType,
+            stake,
+            payout,
+            user: context.user._id,
+          };
+
+          if (betType == 'Straightup') {
+            betSlipData.straightBetTitle = straightBetTitle;
+            betSlipData.odds = odds;
+          } else if (betType == 'Parlay') {
+            betSlipData.legs = legs;
+          }
+
+          const betSlip = await BetSlip.create(betSlipData);
+
+          await User.findByIdAndUpdate(context.user._id, {
+            $push: { betSlips: betSlip._id}
           });
-    
+
           return betSlip;
         }
       }

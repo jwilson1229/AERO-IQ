@@ -2,16 +2,23 @@ import React, { useState } from 'react';
 import '../../styles/betslip.css';
 import { gql, useMutation } from '@apollo/client';
 import { Image } from '@chakra-ui/react';
+import { Auth } from "../../utils/auth";
 import logo from "../assets/images/aero_iq_logo_transparent.png";
 
 const CREATE_BET_SLIP = gql`
-    mutation createBetSlip($betType: String!, $stake: Float!, $straightBetTitle: String!, $payout: Float!, $odds: Float!) {
-        createBetSlip(betType: $betType, stake: $stake, straightBetTitle: $straightBetTitle, payout: $payout, odds: $odds) {
+    mutation createBetSlip($input: CreateBetSlipInput!) {
+        createBetSlip(input: $input) {
+            _id
             betType
             stake
             straightBetTitle
             payout
             odds
+            Parlaylegs{
+              title
+              odds
+            }
+            createdAt
         }
     }
 `;
@@ -22,7 +29,7 @@ type ParlayLeg = {
 };
 
 const BetSlipForm = () => {
-  const [betType, setBetType] = useState<'straightup' | 'parlay' | ''>(''); 
+  const [betType, setBetType] = useState<'straightup' | 'parlay' | ''>('');
   const [odds, setOdds] = useState('');
   const [stake, setStake] = useState('');
   const [error, setError] = useState('');
@@ -54,7 +61,7 @@ const BetSlipForm = () => {
       const potentialPayout = odd > 0
         ? bet + (bet * (odd / 100))
         : bet + (bet * (100 / Math.abs(odd)));
-      
+
       setPayout(potentialPayout.toFixed(2));
       return;
     }
@@ -126,28 +133,49 @@ const BetSlipForm = () => {
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
+
     try {
+      const baseVars = {
+        betType,
+        stake: parseFloat(stake),
+        payout: parseFloat(payout)
+      };
+
+      const variables =
+        betType === 'straightup'
+          ? {
+            ...baseVars,
+            odds: parseFloat(odds),
+            straightBetTitle
+          }
+          : {
+            ...baseVars,
+            Parlaylegs: parlayLegs.map((leg) => ({
+              title: leg.title,
+              odds: parseFloat(leg.odds)
+            }))
+          };
+
       const { data } = await createBetSlip({
         variables: {
-          betType,
-          stake: parseFloat(stake),
-          straightBetTitle,
-          payout: parseFloat(payout),
-          odds: parseFloat(odds)
+          input: variables
         }
       });
-      console.log('Bet Slip Created:', data.createBetSlip);  
+      console.log('Bet Slip Created:', data.createBetSlip);
+
     } catch (error) {
       alert('Failed to create bet slip');
-      console.error(error);  
+      console.error(error);
     }
   };
+
+
 
   return (
     <div className="bet-slip-container">
       <div className="bet-slip-form">
         <Image src={logo} alt="Aero IQ Logo" boxSize="85px" mr={1} borderRadius={10} background="transparent" boxShadow="md" />
-        
+
         <div className="form-group">
           <label htmlFor="betType">Bet Type</label>
           <select
@@ -209,7 +237,7 @@ const BetSlipForm = () => {
         {betType === 'parlay' && (
           <div className="parlay-section">
             <h3>Parlay Legs</h3>
-            
+
             <div className="form-group">
               <label htmlFor="parlayLegTitle">Leg Title</label>
               <input

@@ -1,11 +1,12 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model, Document, Types } from 'mongoose';
 import bcrypt from 'bcrypt';
 
 interface IUser extends Document {
     username: string;
     email: string;
     password: string;
-    isCorrectPassword: (password: string) => Promise<boolean>;
+    betSlips: Types.ObjectId[];
+    isCorrectPassword: (password: string) => Promise<boolean>;   
 }
 
 const userSchema = new Schema<IUser>({
@@ -25,7 +26,13 @@ const userSchema = new Schema<IUser>({
         type: String,
         required: true,
         minlength: 5
-    }
+    },
+    betSlips: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'BetSlip',
+        }
+    ]
 });
 
 userSchema.pre('save', async function(next) {

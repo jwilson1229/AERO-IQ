@@ -1,94 +1,48 @@
-# 🏆 AERO IQ  
-### **(Advanced Expert for Real-Time Odds)**  
-**AI-powered Sports Betting Insights & Arbitrage Opportunities**  
+# ✈️ Aero IQ
+
+**Aero IQ** is an AI-powered sports betting dashboard that delivers precision betting insights, parlay tracking, and user-focused bet slip management. Designed for modern bettors, Aero IQ combines clean UI, smart features, and extensibility with a bold blue-gray aesthetic.
 
 ---
 
-## 🚀 Overview  
-AERO IQ is a **cutting-edge AI-powered sports betting dashboard** designed to provide **real-time betting insights, arbitrage opportunities, and personalized strategies**. It leverages **sports data APIs, AI-driven analytics, and real-time betting odds** to help users **identify profitable plays** and **optimize their betting strategies**.  
+## 📸 Screenshot
 
-🔹 **Core Focus**: AI-driven **arbitrage betting bot**  
-🔹 **Secondary Features**: Live game tracking, betting stats, and AI insights  
-🔹 **Target Audience**: **Personal use first**, with potential to offer to others later  
+![Aero IQ Dashboard](./screenshot.png)
 
 ---
 
-## 🎯 **Key Features**  
-### 🔹 **1. Arbitrage Betting Bot**  
-✅ Select a **sport** → Find **live events** → Scan **sportsbooks** → Identify **profit hedging** opportunities  
-✅ Supports **multi-sports** betting strategies  
-✅ AI analyzes **line movement trends & inefficiencies**  
+## 🚀 Features
 
-### 🔹 **2. Live Sports Tracking**  
-✅ Real-time **score updates** for selected sports  
-✅ Historical data & **in-game analytics**  
-✅ Weather conditions for **game-day insights**  
+- 🧠 **Smart Bet Tracking**  
+  View, track, and manage **parlay** and **straight** bets with detailed odds and payout breakdowns.
 
-### 🔹 **3. Betting Research & Strategy Tool**  
-✅ Search **historical trends** based on sport/player/team  
-✅ AI-generated **betting insights & recommendations**  
-✅ **Personalized alerts** based on user preferences  
+- 💰 **Interactive Bet Cards**  
+  - Shows stake, payout, odds, and creation date  
+  - Conditionally renders based on bet type (e.g., hides odds on parlays)  
+  - Bold, clean visual hierarchy for financial figures
 
-### 🔹 **4. Smart AI Assistant** (AERO)  
-✅ Answers **betting questions** in real-time  
-✅ Suggests **optimal bet types** (parlays, over/under, spreads)  
-✅ **Guides users** on risk management strategies  
+- 🗃️ **GraphQL Backend Integration**  
+  Fully connected to a backend API with Apollo Client:
+  - `GetAllBetSlips` query
+  - `deleteBetSlip` mutation  
+  - Re-fetches data on deletion for seamless updates
 
----
+- 📅 **Date Filtering**  
+  Dropdown menu to filter bet slips by creation date, improving user searchability and organization
 
-## 🏗️ **Tech Stack**  
-
-### **📌 Frontend**  
-- **React (TypeScript)** – Sleek, interactive UI  
-- **TailwindCSS / ShadCN/UI** – Professional styling  
-- **Recharts / D3.js** – Data visualization for odds movement  
-- **Framer Motion** – Smooth UI animations  
-
-### **📌 Backend**  
-- **Node.js (Express + TypeScript)** – Handles API requests  
-- **PostgreSQL (Supabase)** – Stores user preferences, betting history  
-- **Redis (Optional)** – Caching for faster odds lookup  
-
-### **📌 APIs & Data Sources**  
-- **Odds API** – Real-time betting odds  
-- **SportsData.io / LiveScore API** – Live score updates  
-- **OpenWeatherMap API** – Game-day weather conditions  
-- **AI Models (Custom ML Models)** – Arbitrage & betting trend analysis  
+- 🧹 **Responsive Design**  
+  Built with React + CSS for a responsive and professional look across devices
 
 ---
 
-## 🛠️ **Project Roadmap**  
+## 🛠️ Tech Stack
 
-### ✅ **Phase 1: MVP Development**  
-- [ ] **Set up the frontend (React + TypeScript + UI framework)**  
-- [ ] **Integrate basic API calls (free-tier data)**  
-- [ ] **Develop user dashboard with live event tracking**  
-
-### 🔜 **Phase 2: Arbitrage Bot & AI Analysis**  
-- [ ] **Build arbitrage detection logic** (scan sportsbooks for profitable hedges)  
-- [ ] **Train AI on line movement trends & inefficiencies**  
-- [ ] **Implement personalized betting insights**  
-
-### 🔜 **Phase 3: Advanced Features & Optimization**  
-- [ ] **Refine UI/UX for a seamless experience**  
-- [ ] **Enable user accounts & data storage**  
-- [ ] **Automate AI-driven betting recommendations**  
+- **Frontend**: React + TypeScript  
+- **API**: Apollo Client (GraphQL)  
+- **Styling**: Custom CSS + modern UI principles  
+- **State Management**: Apollo Query & Mutation hooks  
+- **Backend (assumed)**: Node.js, GraphQL server, MongoDB (based on `_id` and `createdAt`)
 
 ---
 
-## 🚀 **Getting Started (Development)**  
-
-### **1️⃣ Clone the Repository**  
-```sh
-git clone https://github.com/your-username/AERO-IQ.git
-cd AERO-IQ
-
-### **2️⃣ Install Dependencies**  
-
-Dependencies must be installed in both the root, client and server directories prior to use.
-```sh
-npm install
-```
-
-### **3️⃣ Run the Application**  
+## 📁 Folder Structure (Simplified)
 

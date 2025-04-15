@@ -16,8 +16,8 @@ interface BetSlip extends Document {
   stake: number;
   straightBetTitle: string;
   payout: number;
-  odds: number;      
-  createdAt: Date;
+  odds: number; 
+  createdAt: Date | string;
 }
 
 const betSlipSchema = new Schema({
@@ -28,7 +28,16 @@ const betSlipSchema = new Schema({
   payout: { type: Number, required: true },
   odds: { type: Number, required: false },
   legs: [legSchema],
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
+},
+{
+  timestamps: true,
+  toJSON: {
+    transform(_, ret) {
+      ret.createdAt = new Date(ret.createdAt).toLocaleString();
+      return ret;
+    }
+  }
 });
 
 

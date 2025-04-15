@@ -8,6 +8,22 @@ export const resolvers = {
             if(!context.user) throw new Error("Denied");
             return User.findById(context.user._id);
         },
+        betSlips: async () => {
+          const slips = await BetSlip.find().sort({ createdAt: -1 });
+        
+          return slips.map((slip) => {
+            const formattedSlip = {
+              ...slip.toObject(),
+              createdAt: new Date(slip.createdAt).toLocaleString('en-US', {
+                dateStyle: 'medium',
+                timeStyle: 'short',
+              }),
+            };
+        
+            return formattedSlip;
+          });
+        }
+        
     },
     Mutation: {
         addUser: async(_, {username, email, password }) => {
@@ -55,6 +71,17 @@ export const resolvers = {
           });
 
           return betSlip;
+        },
+
+        deleteBetSlip: async(_, { id }) => {
+          try {
+            const deleteBetSlip = await BetSlip.findByIdAndDelete(id);
+            return deleteBetSlip;
+          } catch (error) {
+            throw new error("Error deleting betslip");
+          }
+        }
+
         }
       }
-    }
+    

@@ -21,7 +21,7 @@ export const authMiddleware = ({ req }: any) => {
   }
 
   try {
-    const { data }: any = jwt.verify(token, process.env.JWT_SECRET_KEY || '', { maxAge: '2hr' });
+    const { data }: any = jwt.verify(token, secret, { maxAge: expiration });
 
     req.user = data;
   } catch (err) {

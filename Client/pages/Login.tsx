@@ -34,9 +34,18 @@ export default function Login() {
         e.preventDefault();
         try {
             const { data } = await login({ variables: form });
+            // Save the token
             Auth.saveToken(data.login.token);
-            navigate("/dashboard");  
+            
+            // Trigger a storage event to notify other components (like App.tsx)
+            window.dispatchEvent(new Event('storage'));
+            
+            // Wait briefly to ensure state updates before navigation
+            setTimeout(() => {
+                navigate("/dashboard");
+            }, 100);
         } catch (error) {
+            console.error('Login error:', error);
             alert('Login Failed, Please check your credentials');
         }
     };

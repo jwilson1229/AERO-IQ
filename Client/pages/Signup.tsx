@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import {
-    Box, Button, Input, Heading,
+    Box, Button, Input, Heading, Text, Link
 } from '@chakra-ui/react';
 import { FormLabel, FormControl } from '@chakra-ui/form-control';
 import { gql, useMutation } from '@apollo/client';
@@ -32,14 +32,27 @@ export default function Signup() {
         try {
             const { data } = await addUser({ variables: form });
             if (data?.addUser?.token) {
+                // Save the token
                 Auth.saveToken(data.addUser.token);
+                
+                // Trigger a storage event to notify other components
+                window.dispatchEvent(new Event('storage'));
+                
                 alert('Signup Successful!');
-                navigate('/'); 
-              }
+                
+                // Navigate directly to dashboard instead of login page
+                setTimeout(() => {
+                    navigate('/dashboard');
+                }, 100);
+            }
         } catch (error) {
+            console.error('Signup error:', error);
             alert('Signup Failed'); 
         }
     };
+    const handleSignInChange = () => {
+        navigate('/')
+    }
 
     return (
         <Box maxW="sm" mx="auto" mt="10">
@@ -58,6 +71,12 @@ export default function Signup() {
                     <Input type="password" name="password" onChange={handleChange} value={form.password} />
                 </FormControl>
                 <Button type="submit" colorScheme="blue" width="full">Sign Up</Button>
+                <Text textAlign="center" mt="4">
+                                Already have an account?{' '}
+                                <Link color="teal.500" onClick={handleSignInChange}>
+                                Login
+                                </Link>
+                            </Text>
             </form>
         </Box>
     );

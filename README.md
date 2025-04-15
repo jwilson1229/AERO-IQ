@@ -82,3 +82,13 @@ AERO IQ is a **cutting-edge AI-powered sports betting dashboard** designed to pr
 ```sh
 git clone https://github.com/your-username/AERO-IQ.git
 cd AERO-IQ
+
+### **2️⃣ Install Dependencies**  
+
+Dependencies must be installed in both the root, client and server directories prior to use.
+```sh
+npm install
+```
+
+### **3️⃣ Run the Application**  
+

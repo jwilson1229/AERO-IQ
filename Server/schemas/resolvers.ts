@@ -46,6 +46,7 @@ export const resolvers = {
             betSlipData.odds = odds;
           } else if (betType == 'Parlay') {
             betSlipData.legs = legs;
+            betSlipData.odds = odds;
           }
 
           const betSlip = await BetSlip.create(betSlipData);

@@ -22,11 +22,11 @@ interface BetSlip extends Document {
 
 const betSlipSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: 'User', required: true},
-  betType: { type: String, enum: ['Straightup', 'Parlay'], required: true },
-  stake: { type: Number, required: true },
-  straightBetTitle: { type: String, required: true },
-  payout: { type: Number, required: true },
-  odds: { type: Number, required: true },
+  betType: { type: String, enum: ['straightup', 'parlay']},
+  stake: { type: Number},
+  straightBetTitle: { type: String},
+  payout: { type: Number},
+  odds: { type: Number},
   legs: [legSchema],
   createdAt: { type: Date, default: Date.now }
 });

@@ -9,28 +9,28 @@ type User {
 
 input ParlayLegInput {
     title: String!
-    odds: Float!
+    odds: [Float]
 }
 
 type ParlayLeg {
-    title: String!
-    odds: Float!
+    title: String
+    odds: [Float]
 }
 
 type BetSlip {
   _id: ID
-  betType: String!
-  stake: Float!
+  betType: String
+  stake: Float
   straightBetTitle: String
-  payout: Float!
-  odds: Float!
+  payout: Float
+  odds: Float
   Parlaylegs: [ParlayLeg]
   createdAt: String
 }
 
 input CreateBetSlipInput {
-    betType: String!
-    stake: Float!
+    betType: String
+    stake: Float
     straightBetTitle: String
     payout: Float
     odds: Float

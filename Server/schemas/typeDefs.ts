@@ -21,11 +21,12 @@ type BetSlip {
   _id: ID
   betType: String!
   stake: Float!
+  user: User!
   straightBetTitle: String
   payout: Float!
   odds: Float!
-  Parlaylegs: [ParlayLeg]
-  createdAt: String
+  legs: [ParlayLeg]
+  createdAt: String!
 }
 
 input CreateBetSlipInput {
@@ -34,8 +35,7 @@ input CreateBetSlipInput {
     straightBetTitle: String
     payout: Float
     odds: Float
-    Parlaylegs: [ParlayLegInput]
-
+    legs: [ParlayLegInput]
 }
 
 type Auth {
@@ -45,7 +45,7 @@ type Auth {
 
 type Query {
     me: User
-    getAllBetSlips: [BetSlip]
+    getAllBetSlips: [BetSlip]!
 }
 
 type Mutation {

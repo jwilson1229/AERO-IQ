@@ -14,7 +14,7 @@ const CREATE_BET_SLIP = gql`
             straightBetTitle
             payout
             odds
-            Parlaylegs{
+            legs{
               title
               odds
             }
@@ -29,7 +29,7 @@ type ParlayLeg = {
 };
 
 const BetSlipForm = () => {
-  const [betType, setBetType] = useState<'straightup' | 'parlay' | ''>('');
+  const [betType, setBetType] = useState<'Straightup' | 'Parlay' | ''>('');
   const [odds, setOdds] = useState('');
   const [stake, setStake] = useState('');
   const [error, setError] = useState('');
@@ -49,9 +49,9 @@ const BetSlipForm = () => {
     if (isNaN(bet)) {
       setError('Please enter a valid stake amount');
       return;
-    }
+    } 
 
-    if (betType === 'straightup') {
+    if (betType === 'Straightup') {
       const odd = parseFloat(odds);
       if (isNaN(odd)) {
         setError('Please enter valid odds');
@@ -66,7 +66,7 @@ const BetSlipForm = () => {
       return;
     }
 
-    if (betType === 'parlay') {
+    if (betType === 'Parlay') {
       if (parlayLegs.length === 0) {
         setError('Please add at least one parlay leg');
         return;
@@ -121,7 +121,7 @@ const BetSlipForm = () => {
   };
 
   const handleBetTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value as 'straightup' | 'parlay' | '';
+    const value = e.target.value as 'Straightup' | 'Parlay' | '';
     setBetType(value);
     setParlayLegs([]);
     setStraightBetTitle('');
@@ -142,7 +142,7 @@ const BetSlipForm = () => {
       };
 
       const variables =
-        betType === 'straightup'
+        betType === 'Straightup'
           ? {
             ...baseVars,
             odds: parseFloat(odds),
@@ -150,7 +150,7 @@ const BetSlipForm = () => {
           }
           : {
             ...baseVars,
-            Parlaylegs: parlayLegs.map((leg) => ({
+            legs: parlayLegs.map((leg) => ({
               title: leg.title,
               odds: parseFloat(leg.odds)
             }))
@@ -185,12 +185,12 @@ const BetSlipForm = () => {
             className="form-control"
           >
             <option value="">Select Bet Type</option>
-            <option value="straightup">Straight Bet</option>
-            <option value="parlay">Parlay</option>
-          </select>
+            <option value="Straightup">Straight Bet</option>
+            <option value="Parlay">Parlay</option>
+          </select> 
         </div>
 
-        {betType === 'straightup' && (
+        {betType === 'Straightup' && (
           <>
             <div className="form-group">
               <label htmlFor="straightBetTitle">Bet Title</label>
@@ -234,7 +234,7 @@ const BetSlipForm = () => {
           />
         </div>
 
-        {betType === 'parlay' && (
+        {betType === 'Parlay' && (
           <div className="parlay-section">
             <h3>Parlay Legs</h3>
 

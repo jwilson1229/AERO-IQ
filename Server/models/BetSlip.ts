@@ -7,7 +7,7 @@ const legSchema = new Schema ({
   },
   odds: {
     type: Number,
-    required: true,
+    required: false,
   }
 });
 

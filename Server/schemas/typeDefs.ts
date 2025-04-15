@@ -9,12 +9,12 @@ type User {
 
 input ParlayLegInput {
     title: String!
-    odds: Float!
+    odds: [Float]!
 }
 
 type ParlayLeg {
     title: String!
-    odds: Float!
+    odds: [Float]!
 }
 
 type BetSlip {

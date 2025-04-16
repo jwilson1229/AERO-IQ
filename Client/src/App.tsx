@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import LoginPage from '../pages/Login';  
-import DashboardPage from '../pages/DashboardPage';  
-import Signup from '../pages/Signup';
-import MyBets from '../pages/myBets';
-import Analytics from '../pages/Analytics';
-import { Auth } from '../utils/auth';
+import LoginPage from './pages/Login';  
+import DashboardPage from './pages/DashboardPage';  
+import Signup from './pages/Signup';
+import MyBets from './pages/myBets';
+import Analytics from './pages/Analytics';
+import { Auth } from './utils/auth';
 
 const isAuthenticated = () => {
   return !!Auth.getToken();  

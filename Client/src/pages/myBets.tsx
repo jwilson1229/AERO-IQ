@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { gql, useQuery, useMutation } from '@apollo/client';
-import Sidebar from "../src/components/Sidebar";
-import Header from "../src/components/Header";
+import Sidebar from "../components/Sidebar";
+import Header from "../components/Header";
 import '../styles/MyBets.css';
 
 const QUERY_BETSLIPS = gql`
@@ -83,7 +83,7 @@ const MyBets = () => {
       <div style={{ flex: 1, padding: '20px', backgroundColor: '#f4f4f4' }}>
         <Header />
 
-        {/* 🔽 Dropdown Filter */}
+        
         <div style={{ marginBottom: '20px' }}>
           <label htmlFor="dateFilter" style={{ marginRight: '10px', fontWeight: 'bold' }}>Filter by date:</label>
           <select id="dateFilter" value={filter} onChange={handleFilterChange}>

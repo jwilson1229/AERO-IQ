@@ -2,11 +2,11 @@ import express from 'express';
 import path from 'node:path';
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
-import { typeDefs, resolvers } from '../schemas/index';
-import db from '../config/connection';
+import { typeDefs, resolvers } from './schemas/index.js';
+import db from './config/connection.js';
 import { Request, Response } from 'express';
 import cors from 'cors';
-import {authMiddleware} from '../utils/auth'
+import {authMiddleware} from './utils/auth.js'
 import dotenv from 'dotenv';
 
 dotenv.config(); 
@@ -28,7 +28,7 @@ const startApolloServer = async () => {
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
-  }));
+ }));
 
   app.options('*', cors());
 

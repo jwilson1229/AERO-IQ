@@ -1,7 +1,7 @@
 
-import BetSlipForm from '../src/components/BetslipForm';
-import Header from '../src/components/Header'
-import Sidebar from '../src/components/Sidebar';
+import BetSlipForm from '../components/BetslipForm';
+import Header from '../components/Header'
+import Sidebar from '../components/Sidebar';
 
 
 const Dashboard = () => {

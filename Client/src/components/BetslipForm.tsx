@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import '../../styles/betslip.css';
+import '../styles/betslip.css';
 import { gql, useMutation } from '@apollo/client';
 import { Image } from '@chakra-ui/react';
-import { Auth } from "../../utils/auth";
 import logo from "../assets/images/aero_iq_logo_transparent.png";
 
 const CREATE_BET_SLIP = gql`
@@ -280,7 +279,7 @@ const BetSlipForm = () => {
                         onClick={() => handleRemoveLeg(index)}
                         className="btn btn-sm btn-danger"
                       >
-                        ❌
+                        🗑️
                       </button>
                     </li>
                   ))}

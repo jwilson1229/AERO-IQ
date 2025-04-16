@@ -8,6 +8,17 @@ export const resolvers = {
             if(!context.user) throw new Error("Denied");
             return User.findById(context.user._id);
         },
+        getAllBetSlips: async (_, __, context) => {
+            if (!context.user) {
+                throw new Error('You must be logged in to view bet slips');
+            }
+            try {
+                const betSlips = await BetSlip.find({ user: context.user._id });
+                return betSlips;
+            } catch (error) {
+                throw new Error('Error fetching bet slips: ' + error.message);
+            }
+        },
     },
     Mutation: {
         addUser: async(_, {username, email, password }) => {

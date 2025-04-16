@@ -32,15 +32,12 @@ export default function Signup() {
         try {
             const { data } = await addUser({ variables: form });
             if (data?.addUser?.token) {
-                // Save the token
                 Auth.saveToken(data.addUser.token);
                 
-                // Trigger a storage event to notify other components
                 window.dispatchEvent(new Event('storage'));
                 
                 alert('Signup Successful!');
                 
-                // Navigate directly to dashboard instead of login page
                 setTimeout(() => {
                     navigate('/dashboard');
                 }, 100);

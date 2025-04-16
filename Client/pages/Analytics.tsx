@@ -49,8 +49,8 @@ interface MonthlyDataPoint {
 
 // GraphQL query to fetch all bet slips
 const GET_ALL_BETSLIPS = gql`
-  query GetAllBetSlips {
-    getAllBetSlips {
+  query GetBetSlips {
+    betSlips {
       _id
       betType
       stake
@@ -86,8 +86,8 @@ const Analytics = () => {
   const colors = ["#2E5BFF", "#8C54FF", "#00C1D4", "#FFB100"];
   
   useEffect(() => {
-    if (data && data.getAllBetSlips) {
-      const betSlips: BetSlip[] = data.getAllBetSlips;
+    if (data && data.betSlips) {
+      const betSlips: BetSlip[] = data.betSlips;
       
       // Calculate stats
       const totalBets = betSlips.length;
@@ -278,7 +278,7 @@ const Analytics = () => {
                   <GridItem>{bet.betType === 'Straightup' && bet.odds ? bet.odds : '-'}</GridItem>
                   <GridItem>${bet.payout.toFixed(2)}</GridItem>
                   <GridItem>${(bet.payout - bet.stake).toFixed(2)}</GridItem>
-                  <GridItem>{new Date(bet.createdAt).toLocaleDateString()}</GridItem>
+                  <GridItem>{bet.createdAt}</GridItem>
                 </Grid>
               ))}
             </Box>

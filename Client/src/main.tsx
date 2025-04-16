@@ -28,7 +28,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-// Reset the store to clear cache - helps resolve stale schema/field references
+
 client.resetStore();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

@@ -162,14 +162,12 @@ const BetSlipForm = () => {
         }
       });
       console.log('Bet Slip Created:', data.createBetSlip);
-
+      alert('BetSlip Created!');
     } catch (error) {
       alert('Failed to create bet slip');
       console.error(error);
     }
   };
-
-
 
   return (
     <div className="bet-slip-container">

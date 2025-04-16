@@ -45,13 +45,14 @@ type Auth {
 
 type Query {
     me: User
-    getAllBetSlips: [BetSlip]!
+    betSlips: [BetSlip]!
 }
 
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     createBetSlip(input: CreateBetSlipInput!): BetSlip!
+    deleteBetSlip(id: ID!): BetSlip
 }
  `;
 

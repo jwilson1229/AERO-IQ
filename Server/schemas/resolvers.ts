@@ -8,17 +8,27 @@ export const resolvers = {
             if(!context.user) throw new Error("Denied");
             return User.findById(context.user._id);
         },
-        getAllBetSlips: async (_, __, context) => {
-            if (!context.user) {
-                throw new Error('You must be logged in to view bet slips');
-            }
-            try {
-                const betSlips = await BetSlip.find({ user: context.user._id });
-                return betSlips;
-            } catch (error) {
-                throw new Error('Error fetching bet slips: ' + error.message);
-            }
-        },
+        betSlips: async (_, __, context) => {
+          try {
+            // If user context exists, only show their betslips
+            const filter = context.user ? { user: context.user._id } : {};
+            const slips = await BetSlip.find(filter).sort({ createdAt: -1 });
+          
+            return slips.map((slip) => {
+              const formattedSlip = {
+                ...slip.toObject(),
+                createdAt: new Date(slip.createdAt).toLocaleString('en-US', {
+                  dateStyle: 'medium',
+                  timeStyle: 'short',
+                }),
+              };
+          
+              return formattedSlip;
+            });
+          } catch (error) {
+            throw new Error('Error fetching bet slips: ' + error.message);
+          }
+        }
     },
     Mutation: {
         addUser: async(_, {username, email, password }) => {
@@ -66,6 +76,15 @@ export const resolvers = {
           });
 
           return betSlip;
+        },
+
+        deleteBetSlip: async(_, { id }) => {
+          try {
+            const deleteBetSlip = await BetSlip.findByIdAndDelete(id);
+            return deleteBetSlip;
+          } catch (error) {
+            throw new Error("Error deleting betslip");
+          }
         }
       }
     }

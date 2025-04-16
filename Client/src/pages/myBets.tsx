@@ -80,12 +80,12 @@ const MyBets = () => {
   return (
     <div style={{ display: 'flex', height: '100vh' }}>
       <Sidebar />
-      <div style={{ flex: 1, padding: '20px', backgroundColor: '#f4f4f4' }}>
+      <div className='background' style={{ flex: 1, padding: '20px', backgroundColor: '#f4f4f4' }}>
         <Header />
 
         
         <div style={{ marginBottom: '20px' }}>
-          <label htmlFor="dateFilter" style={{ marginRight: '10px', fontWeight: 'bold' }}>Filter by date:</label>
+          <label htmlFor="dateFilter" style={{ marginRight: '10px', fontWeight: 'bold', color: 'white', borderRadius:'4px' }}>Filter by date:</label>
           <select id="dateFilter" value={filter} onChange={handleFilterChange}>
             <option value="All">All</option>
             <option value="24h">Last 24 Hours</option>
@@ -95,6 +95,7 @@ const MyBets = () => {
         </div>
 
         <div className="card-container">
+          
           {filteredBetSlips.length ? (
             filteredBetSlips.map((bet: any) => (
               <div key={bet._id} className="card">
@@ -118,18 +119,16 @@ const MyBets = () => {
                   </div>
                 ) : (
                   <p>Title:{bet.straightBetTitle ?? 'N/A'}</p>
+                  
                 )}
                 <p>Payout: <span className='bold-value'>${bet.payout}</span></p>
                 <p>Placed on: {new Date(bet.createdAt).toLocaleString()}</p>
-
-                <div>
-                  <button className="button">Winner</button>
-                  <button className="button">Loser</button>
-                </div>
                 <div className='deletebtn'>
                   <button onClick={() => handleDelete(bet._id)}>🗑️</button>
                 </div>
+                
               </div>
+              
             ))
           ) : (
             <p>No bet slips found for this range.</p>

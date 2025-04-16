@@ -52,7 +52,7 @@ export default function Signup() {
     }
 
     return (
-        <Box maxW="sm" mx="auto" mt="10">
+        <Box maxW="sm" mx="auto" mt="10" color={'white'}>
             <Heading mb="6">Sign Up</Heading>
             <form onSubmit={handleSubmit}>
                 <FormControl mb="4">

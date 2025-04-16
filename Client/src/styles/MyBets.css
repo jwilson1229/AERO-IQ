@@ -1,6 +1,16 @@
 
+.background {
+  background: linear-gradient(135deg, #262641, #1b3563);
+  flex: 1,;
+  padding: '20px';
+}
+
+
+
+
 .card-container {
     display: flex;
+    background: linear-gradient(135deg, #262641, #1b3563);
     flex-wrap: wrap;
     gap: 20px;
     justify-content: space-between;
@@ -9,7 +19,7 @@
   
   
   .card {
-    background: linear-gradient(135deg, #4e73df 0%, #1d3b6d 100%); 
+    background: linear-gradient(135deg, #0f204e 0%, #1d3b6d 100%); 
     color: #fff;
     border-radius: 15px;
     padding: 20px;
@@ -47,17 +57,18 @@
   
   
   .card button {
-    background-color: #0b74e4; 
+    background-color: #151D3F; 
     color: rgb(255, 255, 255);
     border: none;
-    padding: 8px 15px;
+    display: flex;
+    padding: 5px 10px;
     border-radius: 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-weight: 600;
     font-size: 14px; 
-    margin-top: 10px;
-    margin-left: 10px;
+    margin-top: 5px;
+    margin-left: 5px;
   }
 
   .card button:hover {

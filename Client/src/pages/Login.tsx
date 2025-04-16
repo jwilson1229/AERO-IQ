@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import {
-    Box, Button, Input, Heading, Text, Link
+    Box, Button, Input, Heading, Text, Link,
 } from '@chakra-ui/react';
 import { FormLabel, FormControl } from '@chakra-ui/form-control';
 import { gql, useMutation } from '@apollo/client';
 import { Auth } from '../utils/auth';
 import { useNavigate } from 'react-router-dom';
+import '../styles/login.css';
 
 const LOGIN_USER = gql`
     mutation login($email: String!, $password: String!) {

@@ -6,6 +6,7 @@ import Signup from './pages/Signup';
 import MyBets from './pages/myBets';
 import Analytics from './pages/Analytics';
 import { Auth } from './utils/auth';
+import './App.css'
 
 const isAuthenticated = () => {
   return !!Auth.getToken();  

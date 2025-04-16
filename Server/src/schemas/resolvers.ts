@@ -1,7 +1,7 @@
+
 import { User } from '../models/User.js';
 import { signToken } from '../utils/auth.js';
 import BetSlip from '../models/BetSlip.js';
-
 export const resolvers = {
     Query: {
         me: async (_:any, __:any, context:any) => {

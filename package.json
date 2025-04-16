@@ -4,7 +4,8 @@
   },
   "scripts": {
     "start:dev": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "cd Server && npm run start",
+    "server": "cd Server && npm run dev",
+    "start": "cd Server && npm run start",
     "client": "cd Client && npm run dev"
   },
   "dependencies": {

@@ -1,42 +1,38 @@
-import { User } from '../src/models/User';
-import { signToken } from '../src/utils/auth';
-import BetSlip from '../src/models/BetSlip';
+import { User } from '../models/User.js';
+import { signToken } from '../utils/auth.js';
+import BetSlip from '../models/BetSlip.js';
 
 export const resolvers = {
     Query: {
-        me: async (_, __, context) => {
+        me: async (_:any, __:any, context:any) => {
             if(!context.user) throw new Error("Denied");
             return User.findById(context.user._id);
         },
-        betSlips: async (_, __, context) => {
-          try {
-            // If user context exists, only show their betslips
-            const filter = context.user ? { user: context.user._id } : {};
-            const slips = await BetSlip.find(filter).sort({ createdAt: -1 });
-          
-            return slips.map((slip) => {
-              const formattedSlip = {
-                ...slip.toObject(),
-                createdAt: new Date(slip.createdAt).toLocaleString('en-US', {
-                  dateStyle: 'medium',
-                  timeStyle: 'short',
-                }),
-              };
-          
-              return formattedSlip;
-            });
-          } catch (error) {
-            throw new Error('Error fetching bet slips: ' + error.message);
-          }
+        betSlips: async (_:any, __:any, context:any) => {
+          console.log(context)
+          const slips = await BetSlip.find({ user: context.user._id}).sort({ createdAt: -1 });
+        
+          return slips.map((slip) => {
+            const formattedSlip = {
+              ...slip.toObject(),
+              createdAt: new Date(slip.createdAt).toLocaleString('en-US', {
+                dateStyle: 'medium',
+                timeStyle: 'short',
+              }),
+            };
+        
+            return formattedSlip;
+          });
         }
+        
     },
     Mutation: {
-        addUser: async(_, {username, email, password }) => {
+        addUser: async(_:any, {username, email, password }:any) => {
             const user = await User.create({ username, email, password });
             const token = signToken(user);
             return { token, user };
         },
-        login: async (_, { email, password }) => {
+        login: async (_:any, { email, password }:any) => {
             const user = await User.findOne({ email });
             if (!user) {
                 throw new Error("Invalid Login: User not found");
@@ -49,7 +45,7 @@ export const resolvers = {
             return { token, user };
         },
         
-        createBetSlip: async (_, { input }: any, context:any) => {
+        createBetSlip: async (_:any, { input }: any, context:any) => {
             if (!context.user) {
            throw new Error('You must be logged in to create a bet slip');
           }
@@ -78,7 +74,7 @@ export const resolvers = {
           return betSlip;
         },
 
-        deleteBetSlip: async(_, { id }) => {
+        deleteBetSlip: async(_:any, { id }:any) => {
           try {
             const deleteBetSlip = await BetSlip.findByIdAndDelete(id);
             return deleteBetSlip;
@@ -86,5 +82,7 @@ export const resolvers = {
             throw new Error("Error deleting betslip");
           }
         }
+
+        }
       }
-    }
+    

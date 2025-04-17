@@ -7,6 +7,7 @@ import { gql, useMutation } from '@apollo/client';
 import { Auth } from '../utils/auth';
 import { useNavigate } from 'react-router-dom';
 import '../styles/login.css';
+import logo from '../assets/images/logo1.png';
 
 const LOGIN_USER = gql`
     mutation login($email: String!, $password: String!) {
@@ -58,6 +59,7 @@ export default function Login() {
     return (
         
         <Center minH="100vh" bg="linear-gradient(135deg, #262641, #1b3563)">
+        <img className='logo' src={logo} alt='Logo'/>
         <Box className='sign-in-box'
             maxW="lg"
             mx="auto"

@@ -30,7 +30,7 @@ body, html {
  .hockey-image {
    position: absolute;
    top: 52%;
-   right: 5%;
+   right: 1%;
    transform: translateY(-50%);
    width: auto;
    height: auto;

@@ -99,7 +99,7 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #e9ecef;
+  background-color: #14212e;
   padding: 8px 12px;
   border-radius: 6px;
   margin-bottom: 8px;
@@ -112,6 +112,7 @@ button {
   margin-top: 1.5rem;
   border-radius: 8px;
   text-align: center;
+  color: black;
 }
 
 .alert-danger {

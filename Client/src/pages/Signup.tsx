@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import {
-    Box, Button, Input, Heading, Text, Link
+    Box, Button, Input, Heading, Text, Link, Center
 } from '@chakra-ui/react';
 import { FormLabel, FormControl } from '@chakra-ui/form-control';
 import { gql, useMutation } from '@apollo/client';
 import { Auth } from '../utils/auth';
+import "../styles/signUp.css";
 
 const ADD_USER = gql`
 mutation addUser($username: String!, $email: String!, $password: String!) {
@@ -33,18 +34,18 @@ export default function Signup() {
             const { data } = await addUser({ variables: form });
             if (data?.addUser?.token) {
                 Auth.saveToken(data.addUser.token);
-                
+
                 window.dispatchEvent(new Event('storage'));
-                
+
                 alert('Signup Successful!');
-                
+
                 setTimeout(() => {
                     navigate('/dashboard');
                 }, 100);
             }
         } catch (error) {
             console.error('Signup error:', error);
-            alert('Signup Failed'); 
+            alert('Signup Failed');
         }
     };
     const handleSignInChange = () => {
@@ -52,29 +53,37 @@ export default function Signup() {
     }
 
     return (
-        <Box maxW="sm" mx="auto" mt="10" color={'white'}>
-            <Heading mb="6">Sign Up</Heading>
+        <Center minH="100vh" bg="linear-gradient(135deg, #262641, #1b3563)">
+        <Box  maxW="lg"
+            mx="auto"
+            mt="14"
+            p="6"
+            borderRadius="md"
+            boxShadow="lg"
+            bg="linear-gradient(135deg,rgb(38, 63, 95), #1b3563)">
+            <Heading mb="6" textAlign="center" color="white">Sign Up</Heading>
             <form onSubmit={handleSubmit}>
                 <FormControl mb="4">
-                    <FormLabel>Username</FormLabel>
+                    <FormLabel color="white">Username</FormLabel>
                     <Input name="username" onChange={handleChange} value={form.username} />
                 </FormControl>
                 <FormControl mb="4">
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel color="white">Email</FormLabel>
                     <Input type="email" name="email" onChange={handleChange} value={form.email} />
                 </FormControl>
                 <FormControl mb="6">
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel color="white">Password</FormLabel>
                     <Input type="password" name="password" onChange={handleChange} value={form.password} />
                 </FormControl>
-                <Button type="submit" colorScheme="blue" width="full">Sign Up</Button>
-                <Text textAlign="center" mt="4">
-                                Already have an account?{' '}
-                                <Link color="teal.500" onClick={handleSignInChange}>
-                                Login
-                                </Link>
-                            </Text>
+                <Button type="submit" bg="#112341" width="full">Sign Up</Button>
+                <Text textAlign="center" mt="4" color="white">
+                    Already have an account?{' '}
+                    <Link color="teal.500" onClick={handleSignInChange}>
+                        Login
+                    </Link>
+                </Text>
             </form>
         </Box>
+        </Center>
     );
 }

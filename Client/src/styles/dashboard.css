@@ -9,3 +9,38 @@ body, html {
      display:Flex;
      height: '100vh';
   }
+
+  .kobe-image {
+   position: absolute;
+   top: 50%;
+   left: 15%;
+   transform: translateY(-50%);
+   width: auto;
+   height: auto;
+   box-shadow: #161624;
+ }
+ 
+ .kobe {
+   max-height: 80vh; 
+   width: auto;
+   object-fit: contain;
+   display: block;
+ }
+
+ .hockey-image {
+   position: absolute;
+   top: 52%;
+   right: 5%;
+   transform: translateY(-50%);
+   width: auto;
+   height: auto;
+   box-shadow: #161624;
+
+ }
+
+ .hockey {
+   height: 75vh; 
+   width: auto;
+   object-fit: contain;
+   display: block;
+ }

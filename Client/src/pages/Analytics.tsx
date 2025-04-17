@@ -8,7 +8,7 @@ import {
   import { PieChart, Pie, Cell, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
   import "../styles/analytics.css";
   
-  // Define TypeScript interfaces
+  
   interface ParlayLeg {
     title: string;
     odds: number;

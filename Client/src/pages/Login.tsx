@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-    Box, Button, Input, Heading, Text, Link,
+    Box, Button, Input, Heading, Text, Link, Center
 } from '@chakra-ui/react';
 import { FormLabel, FormControl } from '@chakra-ui/form-control';
 import { gql, useMutation } from '@apollo/client';
@@ -35,13 +35,13 @@ export default function Login() {
         e.preventDefault();
         try {
             const { data } = await login({ variables: form });
-            
+
             Auth.saveToken(data.login.token);
-            
-        
+
+
             window.dispatchEvent(new Event('storage'));
-            
-            
+
+
             setTimeout(() => {
                 navigate("/dashboard");
             }, 100);
@@ -52,26 +52,28 @@ export default function Login() {
     };
 
     const handleRegisterRedirect = () => {
-        navigate('/register'); 
+        navigate('/register');
     };
 
     return (
-        <Box
+        
+        <Center minH="100vh" bg="linear-gradient(135deg, #262641, #1b3563)">
+        <Box className='sign-in-box'
             maxW="lg"
             mx="auto"
-            mt="10"
+            mt="12"
             p="6"
             borderRadius="md"
             boxShadow="lg"
-            bg="white"
+            bg="linear-gradient(135deg,rgb(38, 63, 95), #1b3563)"
         >
-            <Heading mb="6" textAlign="center" color="teal.500">
+            <Heading mb="6" textAlign="center" color="white">
                 Login
             </Heading>
             <form onSubmit={handleSubmit}>
                 <Box mb="4">
                     <FormControl>
-                        <FormLabel>Email</FormLabel>
+                        <FormLabel color="white">Email</FormLabel>
                         <Input
                             type="email"
                             name="email"
@@ -83,7 +85,7 @@ export default function Login() {
                 </Box>
                 <Box mb="4">
                     <FormControl>
-                        <FormLabel>Password</FormLabel>
+                        <FormLabel color="white">Password</FormLabel>
                         <Input
                             type="password"
                             name="password"
@@ -95,20 +97,22 @@ export default function Login() {
                 </Box>
                 <Button
                     type="submit"
-                    colorScheme="teal"
+                    color="white"
                     width="full"
                     mb="4"
+                    bg="#112341"
                 >
                     Login
                 </Button>
             </form>
 
-            <Text textAlign="center" mt="4">
+            <Text textAlign="center" mt="4" color="white">
                 Don't have an account?{' '}
                 <Link color="teal.500" onClick={handleRegisterRedirect}>
-                Register
+                    Register
                 </Link>
             </Text>
         </Box>
+        </Center>
     );
 }

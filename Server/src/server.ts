@@ -37,7 +37,12 @@ const startApolloServer = async () => {
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
-  
+  app.use('/graphql', expressMiddleware(server as any,
+    {
+      context: authMiddleware as any
+    }
+  ));
+
   if (process.env.NODE_ENV === 'production') {
     // Serve static files from the React app
     app.use(express.static(path.join(__dirname, 'Client/dist')));
@@ -48,11 +53,7 @@ const startApolloServer = async () => {
   }
 
   
-  app.use('/graphql', expressMiddleware(server as any,
-    {
-      context: authMiddleware as any
-    }
-  ));
+
 
   const PORT = process.env.PORT || 3001;
   app.listen(PORT, () => {

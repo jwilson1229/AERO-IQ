@@ -44,6 +44,7 @@ const MyBets = () => {
       })
       alert('BetSlip Deleted!');
       window.location.reload();
+      return data;
     } catch (error) {
       console.log('Error deleting slip');
     }

@@ -218,7 +218,7 @@ import {
                         dataKey="value"
                         label={({ name, percent }:any) => `${name}: ${(percent * 100).toFixed(0)}%`}
                       >
-                        {betTypeData.map((entry, index) => (
+                        {betTypeData.map((_, index) => (
                           <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
                         ))}
                       </Pie>

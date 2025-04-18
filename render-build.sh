@@ -14,6 +14,8 @@ cd ..
 # Build the client - skip TypeScript type checking during Render deployment
 cd Client
 npm install
+# Explicitly install Vite
+npm install vite --no-save
 # Skip TypeScript checking and directly build with Vite
 export VITE_SKIP_TS_CHECK=true
 npx vite build --mode production

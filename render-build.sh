@@ -5,7 +5,9 @@ npm install
 
 # Build the server
 cd Server
-npm install
+npm install --include=dev
+# Install missing type for bcryptjs explicitly
+npm install --include=dev @types/bcryptjs
 npm run build
 cd ..
 

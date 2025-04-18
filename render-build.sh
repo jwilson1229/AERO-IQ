@@ -16,7 +16,7 @@ cd Client
 npm install
 # Skip TypeScript checking and directly build with Vite
 export VITE_SKIP_TS_CHECK=true
-vite build --mode production
+npx vite build --mode production
 
 # Copy client build to server public directory
 mkdir -p ../Server/dist/public

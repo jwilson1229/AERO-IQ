@@ -11,14 +11,31 @@ npm install --include=dev @types/bcryptjs
 npm run build
 cd ..
 
-# Build the client - skip TypeScript type checking during Render deployment
+# For the client build, we'll use a simpler approach for Render
 cd Client
-npm install
-# Explicitly install Vite
-npm install vite --no-save
-# Skip TypeScript checking and directly build with Vite
-export VITE_SKIP_TS_CHECK=true
-npx vite build --mode production
+
+# Install all dependencies including dev dependencies
+npm install --include=dev
+
+# Explicitly install Vite and React plugin globally for this build
+npm install -g vite @vitejs/plugin-react
+
+# Create a simplified temporary Vite config for production build
+cat > vite.config.simple.js << 'EOL'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [react()],
+  build: {
+    outDir: 'dist',
+    emptyOutDir: true,
+  }
+});
+EOL
+
+# Build with the simplified config
+VITE_SKIP_TS_CHECK=true vite build --config vite.config.simple.js --mode production
 
 # Copy client build to server public directory
 mkdir -p ../Server/dist/public

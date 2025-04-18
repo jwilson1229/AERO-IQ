@@ -11,7 +11,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "npm run build:server && npm run build:client",
     "build:server": "cd Server && tsc",
-    "build:client": "cd Client && echo \"Building client with inline config\" && node -e \"const fs=require('fs'); fs.writeFileSync('vite.config.simple.js', \\`import { defineConfig } from 'vite'; export default defineConfig({ build: { outDir: 'dist', emptyOutDir: true } });\\`)\" && npm i -g vite && vite build --config vite.config.simple.js",
+    "build:client": "cd Client && echo \"Building client with inline config\" && node -e \"const fs=require('fs'); fs.writeFileSync('vite.config.simple.js', \\`import { defineConfig } from 'vite'; export default defineConfig({ build: { outDir: 'dist', emptyOutDir: true } });\\`)\" && ./node_modules/.bin/vite build --config vite.config.simple.js",
     "lint": "cd Client && eslint .",
     "preview": "cd Client && vite preview",
     "test": "vitest",

@@ -8,8 +8,12 @@ import { Request, Response } from 'express';
 import cors from 'cors';
 import {authMiddleware} from './utils/auth.js'
 import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
 
 dotenv.config(); 
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const server = new ApolloServer({
   typeDefs,
@@ -41,7 +45,7 @@ const startApolloServer = async () => {
     app.use(express.static(path.join(__dirname, 'public')));
     // For any other route, send the index.html file
     app.get('*', (_req: Request, res: Response) => {
-      res.sendFile(path.join(__dirname, 'public/index.html'));
+      res.sendFile(path.join(__dirname, '../Client/dist/index.html'));
     });
   }
 

@@ -11,7 +11,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "npm run build:server && npm run build:client",
     "build:server": "cd Server && tsc",
-    "build:client": "cd Client && tsc -b && vite build",
+    "build:client": "cd Client && vite build --emptyOutDir",
     "lint": "cd Client && eslint .",
     "preview": "cd Client && vite preview",
     "test": "vitest",

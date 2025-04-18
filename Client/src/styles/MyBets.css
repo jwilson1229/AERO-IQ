@@ -10,7 +10,7 @@
 
 .card-container {
     display: flex;
-    background: linear-gradient(135deg, #262641, #1b3563);
+    background: linear-gradient(135deg, #262641, #7b9bd6);
     flex-wrap: wrap;
     gap: 20px;
     justify-content: space-between;

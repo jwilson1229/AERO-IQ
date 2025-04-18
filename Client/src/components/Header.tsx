@@ -1,6 +1,6 @@
 import { Flex, Image, Button, } from '@chakra-ui/react';
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/images/aero_iq_logo_transparent.png";
+import logo from "../assets/images/logo1.png";
 import '../styles/header.css';
 
 const Header = () => {

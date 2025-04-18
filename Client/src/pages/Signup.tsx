@@ -7,6 +7,7 @@ import { FormLabel, FormControl } from '@chakra-ui/form-control';
 import { gql, useMutation } from '@apollo/client';
 import { Auth } from '../utils/auth';
 import "../styles/signUp.css";
+import logo from '../assets/images/logo1.png';
 
 const ADD_USER = gql`
 mutation addUser($username: String!, $email: String!, $password: String!) {
@@ -54,6 +55,7 @@ export default function Signup() {
 
     return (
         <Center minH="100vh" bg="linear-gradient(135deg, #262641, #1b3563)">
+            <img className='logo' src={logo} alt='Logo' />
         <Box  maxW="lg"
             mx="auto"
             mt="14"

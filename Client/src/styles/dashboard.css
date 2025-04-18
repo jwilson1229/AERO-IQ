@@ -1,0 +1,46 @@
+
+body, html {
+    background: linear-gradient(135deg, #262641, #1b3563);
+    margin: 0;
+    padding: 0;
+  }
+
+  .sidebar {
+     display:Flex;
+     height: '100vh';
+  }
+
+  .kobe-image {
+   position: absolute;
+   top: 50%;
+   left: 15%;
+   transform: translateY(-50%);
+   width: auto;
+   height: auto;
+   box-shadow: #161624;
+ }
+ 
+ .kobe {
+   max-height: 80vh; 
+   width: auto;
+   object-fit: contain;
+   display: block;
+ }
+
+ .hockey-image {
+   position: absolute;
+   top: 52%;
+   right: 1%;
+   transform: translateY(-50%);
+   width: auto;
+   height: auto;
+   box-shadow: #161624;
+
+ }
+
+ .hockey {
+   height: 75vh; 
+   width: auto;
+   object-fit: contain;
+   display: block;
+ }

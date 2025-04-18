@@ -48,7 +48,7 @@ const BetSlipForm = () => {
     if (isNaN(bet)) {
       setError('Please enter a valid stake amount');
       return;
-    } 
+    }
 
     if (betType === 'Straightup') {
       const odd = parseFloat(odds);
@@ -184,7 +184,7 @@ const BetSlipForm = () => {
             <option value="">Select Bet Type</option>
             <option value="Straightup">Straight Bet</option>
             <option value="Parlay">Parlay</option>
-          </select> 
+          </select>
         </div>
 
         {betType === 'Straightup' && (

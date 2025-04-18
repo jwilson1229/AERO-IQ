@@ -1,0 +1,21 @@
+
+.logo {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 35vh;
+  width: auto;
+  display: inline-block;
+  z-index: 10;
+  pointer-events: none; 
+}
+
+
+  body, html {
+    background: linear-gradient(135deg, #262641, #1b3563);
+    margin: auto;
+    padding: 0;
+    height: 100vh;
+  }
+  

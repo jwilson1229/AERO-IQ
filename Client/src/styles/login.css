@@ -1,0 +1,25 @@
+body, html {
+    background: linear-gradient(135deg, #262641, #1b3563);
+    margin: auto;
+    padding: 0;
+    height: 100vh;
+  }
+
+  .sign-in-box {
+    margin-top: 25%;
+    background: linear-gradient(135deg, #262641, #1b3563);
+  }
+
+  .logo {
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 35vh;
+    width: auto;
+    display: inline-block;
+    z-index: 10;
+    pointer-events: none; 
+  }
+  
+  

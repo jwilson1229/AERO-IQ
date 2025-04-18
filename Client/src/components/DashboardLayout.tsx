@@ -11,7 +11,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 <Header />
 
                 <Grid
-                    templateColumns="repeat(12, 1fr)" 
+                    templateColumns="repeat(12, 1fr)"
                     gap={4}
                     mt={4}
                 >

@@ -1,6 +1,6 @@
 
 .background {
-  background: linear-gradient(135deg, #262641, #1b3563);
+  background: linear-gradient(135deg, #262641, #7b9dd6);
   flex: 1,;
   padding: '20px';
 }
@@ -10,7 +10,7 @@
 
 .card-container {
     display: flex;
-    background: linear-gradient(135deg, #262641, #1b3563);
+    background: linear-gradient(135deg, #262641, #7b9dd6);
     flex-wrap: wrap;
     gap: 20px;
     justify-content: space-between;

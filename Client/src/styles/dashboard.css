@@ -44,3 +44,9 @@ body, html {
    object-fit: contain;
    display: block;
  }
+
+ @media screen and (max-width: 768px) {
+  .hockey-image .kobe-image {
+    display: none;
+  }
+}

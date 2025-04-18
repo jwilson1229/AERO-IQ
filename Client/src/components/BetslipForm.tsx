@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../styles/betslip.css';
 import { gql, useMutation } from '@apollo/client';
 import { Image } from '@chakra-ui/react';
-import logo from "../assets/images/aero_iq_logo_transparent.png";
+import logo from "../assets/images/logo1.png";
 
 const CREATE_BET_SLIP = gql`
     mutation createBetSlip($input: CreateBetSlipInput!) {
@@ -171,7 +171,7 @@ const BetSlipForm = () => {
   return (
     <div className="bet-slip-container">
       <div className="bet-slip-form">
-        <Image src={logo} alt="Aero IQ Logo" boxSize="85px" mr={1} borderRadius={10} background="transparent" boxShadow="md" />
+        <Image src={logo} alt="Aero IQ Logo" boxSize="15vh" mr={1} borderRadius={10} background="transparent" boxShadow="md" />
 
         <div className="form-group">
           <label htmlFor="betType">Bet Type</label>
